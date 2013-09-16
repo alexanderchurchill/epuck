@@ -1,6 +1,5 @@
-from controller import *   # controller comes with Webots
+from controller import *
 import os,re,time,random,math
-# import config
 
 class EpuckFunctions (DifferentialWheels):
     max_wheel_speed = 1000
@@ -53,20 +52,22 @@ class EpuckFunctions (DifferentialWheels):
         r = re.match('(.*),(.*)',d_str)
         self.current_x = float(r.group(1))
         self.current_y = float(r.group(2))
+
     def update_proximities(self):
         for i in range(self.num_dist_sensors):
             self.dist_sensor_values[i] = self.normalise_value(self.dist_sensors[i].getValue())
         return self.dist_sensor_values
+
     def normalise_value(self,value):
         if value > 250:
             value = 250
         return value
+
     def get_random_proximity_sensor(self):
         return random.randint(0,len(self.dist_sensors)-1)
 
     def get_proximity_sensor_value(self,s):
         value = self.dist_sensor_values[s]
-        # print "value: {0}".format(value)
         if value > 1000:
             value = 1000.0
         if value < 50:

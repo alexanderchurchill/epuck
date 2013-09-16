@@ -10,7 +10,6 @@ while True:
     epuck_controller.step(200)
     epuck_controller.move_wheels([numpy.sum(epuck_controller.dist_sensor_values[4:8])/250,numpy.sum(epuck_controller.dist_sensor_values[0:4])/250])
     epuck_controller.step(200)
-    epuck_controller.update_proximities()
+    print "Distance sensors:"
     pprint.pprint(epuck_controller.dist_sensor_values)
-    print "hey"
 
